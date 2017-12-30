@@ -9,15 +9,9 @@ namespace RecipeApi.Models
         public virtual DbSet<Ingredient> Ingredient { get; set; }
         public virtual DbSet<Recipe> Recipe { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public recipeContext(DbContextOptions<recipeContext> options) : base(options)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                //warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=MHIGGINS-LTP0\RECIPE;Database=recipe;Trusted_Connection=True");
-                //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=recipe_localdb;Trusted_Connection=True;MultipleActiveResultSets=true");
-
-            }
+            //any changes to the context options can now be done here
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
